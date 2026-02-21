@@ -1,6 +1,5 @@
 'use client'
 
-import React from 'react'
 import {Avatar, AvatarFallback, AvatarImage} from "@/components/ui/avatar"
 import {
     DropdownMenu,
@@ -29,11 +28,11 @@ const UserDropdown = () => {
     return (
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
-                <Button variant='ghost' className={'flex items-center gap-3 text-gray-400 hover:text-yellow-500'}>
+                <Button variant='ghost' className={'flex items-center gap-3 text-gray-400 hover:text-yellow-500 cursor-pointer'}>
                     <Avatar className={'h-8 w-8'}>
                         <AvatarImage src="https://github.com/shadcn.png"/>
                         <AvatarFallback className={'bg-yellow-500 text-yellow-900 text-sm font-bold'}>
-                            {user.name[0]}
+                            {user.name?.[0] ?? 'A'}
                         </AvatarFallback>
                     </Avatar>
                     <div className={'hidden md:flex flex-col items-start'}>
@@ -47,7 +46,7 @@ const UserDropdown = () => {
                         <Avatar className={'h-8 w-8'}>
                             <AvatarImage src="https://github.com/shadcn.png"/>
                             <AvatarFallback className={'bg-yellow-500 text-yellow-900 text-sm font-bold'}>
-                                {user.name[0]}
+                                {user.name?.[0] ?? 'A'}
                             </AvatarFallback>
                         </Avatar>
                         <div className={'flex flex-col'}>
@@ -56,13 +55,15 @@ const UserDropdown = () => {
                         </div>
                     </div>
                 </DropdownMenuLabel>
-                <DropdownMenuSeparator className={'bg-gray-600'} />
-                <DropdownMenuItem className={'text-gray-100 text-md font-medium focus:bg-transparent focus:text-yellow-500 transition-colors cursor-pointer'}>
+                <DropdownMenuSeparator className={'bg-gray-600'}/>
+                <DropdownMenuItem onClick={handleSignOut}
+                    className={'text-gray-100 text-md font-medium focus:bg-transparent focus:text-yellow-500 transition-colors cursor-pointer'}>
+                    {/*Logout Icon*/}
                     <LogOut className={'h-4 w-4 mr-2 hidden sm:block'}/>
                     Logout
                 </DropdownMenuItem>
                 <nav className={'sm:hidden'}>
-                <DropdownMenuSeparator className={'bg-gray-600'} />
+                    <DropdownMenuSeparator className={'bg-gray-600'}/>
                     <NavItems/>
                 </nav>
             </DropdownMenuContent>
