@@ -7,7 +7,7 @@ import { usePathname } from "next/navigation";
 const NavItems = () => {
   const pathName = usePathname();
   const isActive = (path: string) => {
-    if (path === "/") return true;
+    if (path === "/") return pathName === "/";
     return pathName === path || pathName.startsWith(`${path}/`);
   };
 
